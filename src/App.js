@@ -1,7 +1,13 @@
+import Header from "./components/Header";
+import Login from "./pages/Login";
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <Header />
+      <div className="container mx-auto overflow-hidden">
+        <Login />
+      </div>
     </>
   );
 }
