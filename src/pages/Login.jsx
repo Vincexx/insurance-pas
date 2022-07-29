@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import TextBox from "../components/TextBox";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -32,12 +33,12 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="text-center py-3">
-            <sub>
-              Don't have account yet?{" "}
-              <a href="google.com" className="text-blue-500 hover:underline">
-                Sign Up
-              </a>
+          <div className="text-center pb-3 py-6">
+            <sub className="flex justify-center">
+              <p className="mr-1">Dont have account yet? </p>
+              <Link to={"/register"}>
+                <p className="text-blue-500 hover:underline">Sign Up</p>
+              </Link>
             </sub>
           </div>
         </form>
