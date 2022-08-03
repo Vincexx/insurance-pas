@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import TextBox from "../components/TextBox";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { authActions } from "../store/auth-slice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
+  const register = (e) => {
+    e.preventDefault();
+    dispatch(authActions.register({ name: "Charles", age: 12 }));
+  };
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="shadow-md pt-12 px-12 w-full md:w-1/2 lg:w-1/3">
@@ -55,7 +65,10 @@ const Register = () => {
           </div>
 
           <div className="text-right">
-            <button className="bg-green-500 text-white px-8 py-2 rounded">
+            <button
+              onClick={(e) => register(e)}
+              className="bg-green-500 text-white px-8 py-2 rounded"
+            >
               Register
             </button>
           </div>

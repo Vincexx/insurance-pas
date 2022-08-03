@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import gravitas from "../assets/img/gravitas.svg";
+import axios from "axios";
 
 const Index = () => {
   return (
