@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-const TextBox = ({ type = "text", placeholder, icon }) => {
+const TextBox = ({
+  type = "text",
+  placeholder,
+  icon,
+  handleChange,
+  field,
+  value,
+}) => {
   return (
     <div className="relative flex items-center focus-within:text-gray-600">
       {icon}
@@ -9,6 +16,9 @@ const TextBox = ({ type = "text", placeholder, icon }) => {
         type={type}
         className="border py-2 pr-3 pl-10 rounded-md shadow-md w-full focus:outline-none"
         placeholder={placeholder}
+        name={field}
+        onChange={handleChange}
+        value={value}
       />
     </div>
   );

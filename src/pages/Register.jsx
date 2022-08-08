@@ -1,17 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import TextBox from "../components/TextBox";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { authActions } from "../store/auth-slice";
+import axios from "axios";
 
 const Register = () => {
   const dispatch = useDispatch();
 
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault();
-    dispatch(authActions.register({ name: "Charles", age: 12 }));
+    await axios
+      .post(`http://localhost:8080/api/users`, {
+        name: "Jerald",
+        userName: "Aljay",
+        password: "aljay123",
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

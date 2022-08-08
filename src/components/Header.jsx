@@ -10,9 +10,12 @@ const Header = () => {
           <p className="font-extrabold text-green-500 text-lg">Majesco</p>
         </div>
 
-        <ul className="text-gray-700 flex justify-between w-60">
+        <ul className="text-gray-700 flex justify-between w-72">
           <Link to={"/"}>
             <li>Home</li>
+          </Link>
+          <Link to={"/dashboard"}>
+            <li>Dashboard</li>
           </Link>
           <Link to={"/login"}>
             <li>Login</li>
