@@ -22,17 +22,14 @@ const Login = () => {
         </h1>
         <form action="" className="my-3">
           <div className="mb-1">
-            <TextBox
-              placeholder={"Username or Email"}
-              icon={<FaUser className="absolute ml-3" />}
-            />
+            <TextBox placeholder={"Username or Email"} icon={<FaUser />} />
           </div>
 
           <div className="mb-3">
             <TextBox
               type={"password"}
               placeholder={"Password"}
-              icon={<FaLock className="absolute ml-3" />}
+              icon={<FaLock />}
             />
           </div>
 

@@ -30,38 +30,26 @@ const Register = () => {
 
         <form action="" className="my-3">
           <div className="mb-3">
-            <TextBox
-              placeholder={"Firstname"}
-              icon={<FaUser className="absolute ml-3" />}
-            />
+            <TextBox placeholder={"Firstname"} icon={<FaUser />} />
           </div>
 
           <div className="mb-3">
-            <TextBox
-              placeholder={"Lastname"}
-              icon={<FaUser className="absolute ml-3" />}
-            />
+            <TextBox placeholder={"Lastname"} icon={<FaUser />} />
           </div>
 
           <div className="mb-3">
-            <TextBox
-              placeholder={"Email"}
-              icon={<FaEnvelope className="absolute ml-3" />}
-            />
+            <TextBox placeholder={"Email"} icon={<FaEnvelope />} />
           </div>
 
           <div className="mb-3">
-            <TextBox
-              placeholder={"Username"}
-              icon={<FaUser className="absolute ml-3" />}
-            />
+            <TextBox placeholder={"Username"} icon={<FaUser />} />
           </div>
 
           <div className="mb-3">
             <TextBox
               type={"password"}
               placeholder={"Password"}
-              icon={<FaLock className="absolute ml-3" />}
+              icon={<FaLock />}
             />
           </div>
 
@@ -69,7 +57,7 @@ const Register = () => {
             <TextBox
               type={"password"}
               placeholder={"Confirm Password"}
-              icon={<FaLock className="absolute ml-3" />}
+              icon={<FaLock />}
             />
           </div>
 
