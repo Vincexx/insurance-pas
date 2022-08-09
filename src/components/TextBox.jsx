@@ -13,13 +13,13 @@ const TextBox = ({
     <div className="flex items-center focus-within:text-gray-600">
       <input
         type={type}
-        className="border py-2 pr-3 pl-10 rounded-md shadow-md w-full focus:outline-none -z-10"
+        className="border py-2 pr-3 pl-10 rounded-md shadow-md w-full focus:outline-none"
         placeholder={placeholder}
         name={field}
         onChange={handleChange}
         value={value}
       />
-      <div className="absolute pl-3 -z-10">{icon}</div>
+      <div className="absolute pl-3">{icon}</div>
     </div>
   );
 };

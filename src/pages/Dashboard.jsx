@@ -55,7 +55,7 @@ const Dashboard = () => {
           </div>
         </form>
 
-        <ul>
+        <ul className="transition-all duration-500">
           {listPolicies.map((item, id) => (
             <li
               key={id}
