@@ -33,14 +33,14 @@ const Dashboard = () => {
         <form className="my-1" onSubmit={(e) => storePolicy(e)}>
           <TextBox
             placeholder={"Policy name"}
-            icon={<FaCoins className="absolute ml-3" />}
+            icon={<FaCoins />}
             handleChange={handleChange}
             field="name"
             value={policy.name}
           />
           <TextBox
             placeholder={"Policy price"}
-            icon={<FaCoins className="absolute ml-3" />}
+            icon={<FaCoins />}
             handleChange={handleChange}
             field="price"
             value={policy.price}
