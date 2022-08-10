@@ -4,8 +4,7 @@ import Sidebar from "../components/Sidebar";
 const Dashboard = () => {
   return (
     <>
-      <Sidebar />
-      <div className="bg-red-200 md:w-3/4">
+      <div className="md:w-3/4 md:mt-24">
         <p>Dashboard</p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor iure,

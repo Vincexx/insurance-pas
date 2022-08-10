@@ -39,11 +39,11 @@ const Sidebar = () => {
 
   return (
     <div className="md:mt-24 mt-16 md:px-10 md:w-1/3">
-      <ul className="flex justify-between md:block">
+      <ul className="flex justify-between items-center md:block">
         {navs.map((item, id) => (
-          <Link key={id} to={item.path}>
+          <Link key={id} to={item.path} className="w-full">
             <li
-              className="md:pl-3 py-5 border-b-2 hover:bg-green-400 transition-all duration-100 flex items-center justify-center md:justify-start w-full"
+              className="md:pl-3 py-5 border-b-2 hover:bg-green-400 transition-all duration-100 flex items-center justify-center md:justify-start"
               key={id}
             >
               {item.logo}

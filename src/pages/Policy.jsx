@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 const Policy = () => {
   return (
     <>
-      <div>
+      <div className="md:w-3/4 md:mt-24">
         <p>Policy</p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut eligendi
