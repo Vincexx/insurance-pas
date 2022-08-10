@@ -10,7 +10,7 @@ const TextBox = ({
   value,
 }) => {
   return (
-    <div className="flex items-center focus-within:text-gray-600">
+    <div className="flex items-center focus-within:text-gray-600 relative">
       <input
         type={type}
         className="border py-2 pr-3 pl-10 rounded-md shadow-md w-full focus:outline-none"

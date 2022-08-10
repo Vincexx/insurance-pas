@@ -4,8 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import { useState } from "react";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(true);
+
   return (
     <>
       <BrowserRouter>
