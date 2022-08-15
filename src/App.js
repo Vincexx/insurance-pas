@@ -4,35 +4,30 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
-import { useState } from "react";
-import Sidebar from "./components/Sidebar";
 import Account from "./pages/Account";
 import Policy from "./pages/Policy";
+import SideBarLayout from "./components/SideBarLayout";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
-
   return (
     <>
       <BrowserRouter>
         <Header />
         <div className="container mx-auto overflow-hidden">
-          {isAuth ? (
-            <div className="md:flex">
-              <Sidebar />
-              <Routes>
-                <Route path="/" element={<Index />}></Route>
-                <Route path="/dashboard" element={<Dashboard />}></Route>
-                <Route path="/accounts" element={<Account />}></Route>
-                <Route path="/policies" element={<Policy />}></Route>
-              </Routes>
-            </div>
-          ) : (
+          <div className="md:flex">
             <Routes>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
+              <Route path="/" element={<Index />}></Route>
+              <Route element={<SideBarLayout />}>
+                <Route index path="/dashboard" element={<Dashboard />} />
+                <Route path="/accounts" element={<Account />} />
+                <Route path="/policies" element={<Policy />} />
+              </Route>
             </Routes>
-          )}
+          </div>
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+          </Routes>
         </div>
       </BrowserRouter>
     </>

@@ -11,7 +11,12 @@
   box-sizing: border-box;
 }
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .tbl-row div:nth-child(even) {
+    @apply bg-gray-100;
+  }
+}

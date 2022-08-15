@@ -38,7 +38,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="md:mt-24 mt-16 md:px-10 md:w-1/3">
+    <div className="md:mt-24 mt-16 md:pl-10 md:pr-5 md:w-1/3">
       <ul className="flex justify-between items-center md:block">
         {navs.map((item, id) => (
           <Link key={id} to={item.path} className="w-full">
