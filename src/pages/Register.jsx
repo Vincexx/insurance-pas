@@ -5,22 +5,38 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import axios from "axios";
+import { useState } from "react";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const [form, setForm] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    password: "",
+  });
 
   const register = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:8080/api/users`, {
-        name: "Jerald",
-        userName: "Aljay",
-        password: "aljay123",
-      })
+      .post(`http://localhost:8080/api/register/user`, form)
       .then((res) => {
         console.log(res.data);
+        console.log("Success");
+        alert("Login Success");
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -30,19 +46,53 @@ const Register = () => {
 
         <form action="" className="my-3">
           <div className="mb-3">
-            <TextBox placeholder={"Firstname"} icon={<FaUser />} />
+            <TextBox
+              placeholder={"Firstname"}
+              icon={<FaUser />}
+              field={"firstName"}
+              value={form.firstName}
+              handleChange={handleChange}
+            />
           </div>
 
           <div className="mb-3">
-            <TextBox placeholder={"Lastname"} icon={<FaUser />} />
+            <TextBox
+              placeholder={"Middlename"}
+              icon={<FaUser />}
+              field={"middleName"}
+              value={form.middleName}
+              handleChange={handleChange}
+            />
           </div>
 
           <div className="mb-3">
-            <TextBox placeholder={"Email"} icon={<FaEnvelope />} />
+            <TextBox
+              placeholder={"Lastname"}
+              icon={<FaUser />}
+              field={"lastName"}
+              value={form.lastName}
+              handleChange={handleChange}
+            />
           </div>
 
           <div className="mb-3">
-            <TextBox placeholder={"Username"} icon={<FaUser />} />
+            <TextBox
+              placeholder={"Address"}
+              icon={<FaUser />}
+              field={"address"}
+              value={form.address}
+              handleChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <TextBox
+              placeholder={"Email"}
+              icon={<FaEnvelope />}
+              field={"email"}
+              value={form.email}
+              handleChange={handleChange}
+            />
           </div>
 
           <div className="mb-3">
@@ -50,14 +100,9 @@ const Register = () => {
               type={"password"}
               placeholder={"Password"}
               icon={<FaLock />}
-            />
-          </div>
-
-          <div className="mb-3">
-            <TextBox
-              type={"password"}
-              placeholder={"Confirm Password"}
-              icon={<FaLock />}
+              field={"password"}
+              value={form.password}
+              handleChange={handleChange}
             />
           </div>
 
