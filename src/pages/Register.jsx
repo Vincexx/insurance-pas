@@ -28,15 +28,23 @@ const Register = () => {
     await axios
       .post(`http://localhost:8080/api/register/user`, form)
       .then((res) => {
-        console.log(res.data);
-        console.log("Success");
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-          return navigate("/login");
+          navigate("/login");
         }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 500) {
+          return (
+            <Modal
+              icon={<FaCheck className="text-green-500 text-4xl" />}
+              status={"Failed"}
+              message={err.message}
+            />
+          );
+        }
+      });
   };
 
   const handleChange = (e) => {
@@ -50,7 +58,13 @@ const Register = () => {
 
   return (
     <>
-      {success && <Modal />}
+      {success && (
+        <Modal
+          icon={<FaCheck className="text-green-500 text-4xl" />}
+          status={"Success"}
+          message={"Account has been registered"}
+        />
+      )}
       <div className="h-screen flex items-center justify-center">
         <div className="shadow-md pt-12 px-12 w-full md:w-1/2 lg:w-1/3">
           <h1 className="font-bold text-center uppercase">
