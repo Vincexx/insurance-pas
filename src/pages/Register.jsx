@@ -18,7 +18,7 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:8080/api/register`, form)
+      .post(`${process.env.REACT_APP_API_URL}/api/register`, form)
       .then((res) => {
         setSuccess(true);
         setTimeout(() => {

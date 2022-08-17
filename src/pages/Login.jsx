@@ -18,7 +18,7 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:8080/api/login", form)
+      .post(`${process.env.REACT_APP_API_URL}/api/login`, form)
       .then((res) => {
         console.log(res);
         setSuccess(true);
