@@ -18,7 +18,7 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:8080/api/register/user`, form)
+      .post(`http://localhost:8080/api/register`, form)
       .then((res) => {
         setSuccess(true);
         setTimeout(() => {

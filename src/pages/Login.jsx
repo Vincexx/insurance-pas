@@ -6,12 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import axios from "axios";
 import Modal from "../components/Modal";
+import ErrorMessage from "../components/ErrorMessage";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const form = useSelector((state) => state.auth.loginForm);
   const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const login = async (e) => {
     e.preventDefault();
@@ -25,7 +27,13 @@ const Login = () => {
           navigate("/dashboard");
         }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.response.data);
+        setFailed(true);
+        setTimeout(() => {
+          setFailed(false);
+        }, 3000);
+      });
   };
 
   const handleChange = (e) => {
@@ -43,11 +51,13 @@ const Login = () => {
           message={"Login Successful"}
         />
       )}
+
       <div className="h-screen flex items-center justify-center">
         <div className="shadow-md pt-12 px-12 w-full md:w-1/2 lg:w-1/3">
           <h1 className="font-bold text-center uppercase">
             Policy Administration System
           </h1>
+          {failed && <ErrorMessage />}
           <form action="" className="my-3">
             <div className="mb-1">
               <TextBox
