@@ -2,7 +2,7 @@ import React from "react";
 import { FaUser, FaLock, FaEnvelope, FaCheck } from "react-icons/fa";
 import TextBox from "../components/TextBox";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import axios from "axios";
 import { useState } from "react";
@@ -12,16 +12,8 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-
+  const form = useSelector((state) => state.auth.registerForm);
   const [success, setSuccess] = useState(false);
-  const [form, setForm] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    address: "",
-    email: "",
-    password: "",
-  });
 
   const register = async (e) => {
     e.preventDefault();
@@ -34,26 +26,13 @@ const Register = () => {
           navigate("/login");
         }, 2000);
       })
-      .catch((err) => {
-        if (err.response.status === 500) {
-          return (
-            <Modal
-              icon={<FaCheck className="text-green-500 text-4xl" />}
-              status={"Failed"}
-              message={err.message}
-            />
-          );
-        }
-      });
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setForm((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    dispatch(authActions.setRegForm({ name, value }));
   };
 
   return (
