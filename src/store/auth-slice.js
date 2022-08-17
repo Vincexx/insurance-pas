@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const authSlice = createSlice({
   name: "auth",
@@ -21,6 +20,9 @@ const authSlice = createSlice({
   reducers: {
     setRegForm(state, action) {
       state.registerForm[action.payload.name] = action.payload.value;
+    },
+    setLoginForm(state, action) {
+      state.loginForm[action.payload.name] = action.payload.value;
     },
     login(state) {
       state.isLoggedIn = true;
