@@ -14,17 +14,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <div className="container mx-auto overflow-hidden">
-          <div className="md:flex">
-            <Routes>
-              <Route path="/" element={<Index />}></Route>
-              <Route element={<SideBarLayout />}>
-                <Route index path="/dashboard" element={<Dashboard />} />
-                <Route path="/accounts" element={<Account />} />
-                <Route path="/policies" element={<Policy />} />
-              </Route>
-            </Routes>
-          </div>
           <Routes>
+            <Route path="/" element={<Index />}></Route>
+            <Route element={<SideBarLayout />}>
+              <Route index path="/dashboard" element={<Dashboard />} exact />
+              <Route path="/accounts" element={<Account />} />
+              <Route path="/policies" element={<Policy />} />
+            </Route>
+
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
           </Routes>
