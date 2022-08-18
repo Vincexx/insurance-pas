@@ -25,6 +25,7 @@ const Login = () => {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
+          resetForm();
           navigate("/dashboard");
         }, 2000);
       })
