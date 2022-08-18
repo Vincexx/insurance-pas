@@ -21,6 +21,7 @@ const Login = () => {
       .post(`${process.env.REACT_APP_API_URL}/api/login`, form)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", res.data.token);
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
