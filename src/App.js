@@ -9,6 +9,11 @@ import Policy from "./pages/Policy";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PublicRoutes from "./utils/PublicRoutes";
 
+export const useAuth = () => {
+  const token = localStorage.getItem("token");
+  return token;
+};
+
 function App() {
   return (
     <>

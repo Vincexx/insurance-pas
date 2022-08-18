@@ -1,27 +1,41 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaMagnet, FaWindowClose, FaHamburger } from "react-icons/fa";
 import Button from "./Button";
+import { useEffect } from "react";
+import { useAuth } from "../App";
 
 const Header = () => {
-  const navs = [
-    { name: "Home", link: "/" },
-    { name: "Dashboard", link: "/dashboard" },
+  const navigate = useNavigate();
+
+  const token = useAuth();
+  useEffect(() => {}, [token]);
+
+  const [open, setOpen] = useState(false);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const publicRoutes = [{ name: "Dashboard", link: "/dashboard" }];
+  const privateRoutes = [
     { name: "Login", link: "/login" },
     { name: "Register", link: "/register" },
   ];
-
-  const [open, setOpen] = useState(false);
+  const navs = !token ? privateRoutes : publicRoutes;
 
   return (
     <div className="shadow-md w-full fixed top-0 left-0">
       <div className="md:flex items-center justify-between py-4 md:px-10 px-7">
-        <div className="flex items-center font-bold cursor-pointer text-xl">
-          <span className="mr-1 text-green-500">
-            <FaMagnet />
-          </span>
-          <p>Majesco</p>
-        </div>
+        <Link to={"/"}>
+          <div className="flex items-center font-bold cursor-pointer text-xl">
+            <span className="mr-1 text-green-500">
+              <FaMagnet />
+            </span>
+            <p>Majesco</p>
+          </div>
+        </Link>
 
         <div className="cursor-pointer" onClick={() => setOpen(!open)}>
           {open ? (
@@ -47,7 +61,11 @@ const Header = () => {
               <Link to={item.link}>{item.name}</Link>
             </li>
           ))}
-          <Button btnName={"Get Started"} />
+          {!token ? (
+            <Button btnName={"Get Started"} />
+          ) : (
+            <Button btnName={"Logout"} action={() => logout()} />
+          )}
         </ul>
       </div>
     </div>

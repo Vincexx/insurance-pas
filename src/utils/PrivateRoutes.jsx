@@ -2,10 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { Navigate } from "react-router-dom";
-
-export const useAuth = () => {
-  return false;
-};
+import { useAuth } from "../App";
 
 const SideBarLayout = () => {
   let isAuth = useAuth();
