@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import axios from "axios";
-import Modal from "../components/Modal";
+import Modal from "../components/AlertModal";
 import ErrorMessage from "../components/ErrorMessage";
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-          resetForm();
+          dispatch(authActions.resetLoginForm());
           navigate("/dashboard");
         }, 2000);
       })
@@ -59,7 +59,7 @@ const Login = () => {
           <h1 className="font-bold text-center uppercase">
             Policy Administration System
           </h1>
-          {failed && <ErrorMessage />}
+          {failed && <ErrorMessage message={"Invalid Credentials"} />}
           <form action="" className="my-3">
             <div className="mb-1">
               <TextBox

@@ -24,6 +24,22 @@ const authSlice = createSlice({
     setLoginForm(state, action) {
       state.loginForm[action.payload.name] = action.payload.value;
     },
+    resetLoginForm(state, action) {
+      state.loginForm = {
+        email: "",
+        password: "",
+      };
+    },
+    resetRegForm(state, action) {
+      state.registerForm = {
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        address: "",
+        email: "",
+        password: "",
+      };
+    },
     login(state) {
       state.isLoggedIn = true;
     },

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import axios from "axios";
 import { useState } from "react";
-import Modal from "../components/Modal";
+import Modal from "../components/AlertModal";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -23,6 +23,7 @@ const Register = () => {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
+          dispatch(authActions.resetRegForm());
           navigate("/login");
         }, 2000);
       })
