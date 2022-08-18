@@ -8,12 +8,14 @@ import axios from "axios";
 import { useState } from "react";
 import Modal from "../components/AlertModal";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../components/ErrorMessage";
 
 const Register = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const form = useSelector((state) => state.auth.registerForm);
   const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const register = async (e) => {
     e.preventDefault();
@@ -27,7 +29,15 @@ const Register = () => {
           navigate("/login");
         }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 500) {
+          setFailed(true);
+          setTimeout(() => {
+            setFailed(false);
+          }, 2000);
+        }
+      });
   };
 
   const handleChange = (e) => {
@@ -50,7 +60,7 @@ const Register = () => {
           <h1 className="font-bold text-center uppercase">
             Register an Account
           </h1>
-
+          {failed && <ErrorMessage message={"Something went wrong"} />}
           <form action="" className="my-3">
             <div className="mb-3">
               <TextBox
