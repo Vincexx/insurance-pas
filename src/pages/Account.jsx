@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Button from "../components/Button";
+import { userActions } from "../store/user-slice";
+import { useDispatch } from "react-redux/es/exports";
 
 const Account = () => {
   const header = [
@@ -13,14 +16,15 @@ const Account = () => {
     "Edit",
     "Delete",
   ];
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.user.allUsers);
 
   const fetchAccounts = async () => {
     await axios
       .get(`${process.env.REACT_APP_API_URL}/api/admin/users`)
       .then((res) => {
         console.log(res.data);
-        setUsers(res.data);
+        dispatch(userActions.getAllUsers(res.data));
       })
       .catch((err) => console.log(err));
   };
