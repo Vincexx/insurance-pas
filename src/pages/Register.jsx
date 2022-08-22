@@ -1,5 +1,11 @@
 import React from "react";
-import { FaUser, FaLock, FaEnvelope, FaCheck } from "react-icons/fa";
+import {
+  FaUser,
+  FaLock,
+  FaEnvelope,
+  FaCheck,
+  FaAddressBook,
+} from "react-icons/fa";
 import TextBox from "../components/TextBox";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +22,14 @@ const Register = () => {
   const form = useSelector((state) => state.auth.registerForm);
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [errors, setErrors] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    password: "",
+  });
 
   const register = async (e) => {
     e.preventDefault();
@@ -23,6 +37,7 @@ const Register = () => {
       .post(`${process.env.REACT_APP_API_URL}/api/register`, form)
       .then((res) => {
         setSuccess(true);
+        setFailed(false);
         setTimeout(() => {
           setSuccess(false);
           dispatch(authActions.resetRegForm());
@@ -30,12 +45,18 @@ const Register = () => {
         }, 2000);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.errors);
         if (err.response.status === 500) {
           setFailed(true);
-          setTimeout(() => {
-            setFailed(false);
-          }, 2000);
+        }
+        if (err.response.status === 400) {
+          err.response.data.errors.map((item) => {
+            const { defaultMessage, field } = item;
+            setErrors((prevState) => ({
+              ...prevState,
+              [field]: defaultMessage,
+            }));
+          });
         }
       });
   };
@@ -60,7 +81,11 @@ const Register = () => {
           <h1 className="font-bold text-center uppercase">
             Register an Account
           </h1>
-          {failed && <ErrorMessage message={"Something went wrong"} />}
+          {failed && (
+            <ErrorMessage
+              message={"Unknown Error! Please contact your administrator."}
+            />
+          )}
           <form action="" className="my-3">
             <div className="mb-3">
               <TextBox
@@ -69,6 +94,7 @@ const Register = () => {
                 field={"firstName"}
                 value={form.firstName}
                 handleChange={handleChange}
+                errorMsg={errors.firstName}
               />
             </div>
 
@@ -89,16 +115,18 @@ const Register = () => {
                 field={"lastName"}
                 value={form.lastName}
                 handleChange={handleChange}
+                errorMsg={errors.lastName}
               />
             </div>
 
             <div className="mb-3">
               <TextBox
                 placeholder={"Address"}
-                icon={<FaUser />}
+                icon={<FaAddressBook />}
                 field={"address"}
                 value={form.address}
                 handleChange={handleChange}
+                errorMsg={errors.address}
               />
             </div>
 
@@ -109,6 +137,7 @@ const Register = () => {
                 field={"email"}
                 value={form.email}
                 handleChange={handleChange}
+                errorMsg={errors.email}
               />
             </div>
 
@@ -120,6 +149,7 @@ const Register = () => {
                 field={"password"}
                 value={form.password}
                 handleChange={handleChange}
+                errorMsg={errors.password}
               />
             </div>
 

@@ -23,6 +23,7 @@ const Login = () => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         setSuccess(true);
+        setFailed(false);
         setTimeout(() => {
           setSuccess(false);
           dispatch(authActions.resetLoginForm());
@@ -32,9 +33,6 @@ const Login = () => {
       .catch((err) => {
         console.log(err.response.data);
         setFailed(true);
-        setTimeout(() => {
-          setFailed(false);
-        }, 3000);
       });
   };
 

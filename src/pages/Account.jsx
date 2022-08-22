@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
-import { userActions } from "../store/user-slice";
+import { fetchAllAccounts, userActions } from "../store/user-slice";
 import { useDispatch } from "react-redux/es/exports";
 
 const Account = () => {
