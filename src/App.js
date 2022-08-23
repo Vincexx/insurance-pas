@@ -9,6 +9,10 @@ import Policy from "./pages/Policy";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PublicRoutes from "./utils/PublicRoutes";
 import Footer from "./components/Footer";
+import { useState } from "react";
+import { useEffect } from "react";
+import { RingLoader } from "react-spinners";
+import axios from "axios";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
@@ -16,8 +20,26 @@ export const useAuth = () => {
 };
 
 function App() {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${useAuth()}`;
+  console.log(useAuth());
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
+      <div
+        className={`z-10 bg-green-600 absolute w-full h-screen flex justify-center items-center transition-all duration-1000 ${
+          loading ? "top-[-1px]" : "top-[-900px] opacity-0"
+        }`}
+      >
+        <RingLoader color={"#ffffff"} loading={loading} size={80} />
+      </div>
       <div className="flex flex-col h-screen justify-between">
         <BrowserRouter>
           <Header />

@@ -3,7 +3,7 @@ import React from "react";
 const Dashboard = () => {
   return (
     <>
-      <div className="md:w-3/4 md:mt-24">
+      <div className="md:w-4/5 md:mt-24">
         <p>Dashboard</p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor iure,

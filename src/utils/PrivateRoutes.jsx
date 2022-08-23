@@ -7,7 +7,7 @@ import { useAuth } from "../App";
 const SideBarLayout = () => {
   let isAuth = useAuth();
   return isAuth ? (
-    <div className="md:flex">
+    <div className="md:flex justify-between">
       <Sidebar />
       <Outlet />
     </div>
