@@ -29,7 +29,7 @@ const Register = () => {
     await axios
       .post(`${process.env.REACT_APP_API_URL}/api/register`, form)
       .then((res) => {
-        dispatch(authActions.resetErrors())
+        dispatch(authActions.resetErrors());
         setSuccess(true);
         setFailed(false);
         setTimeout(() => {
@@ -39,7 +39,7 @@ const Register = () => {
         }, 2000);
       })
       .catch((err) => {
-        dispatch(authActions.resetErrors())
+        dispatch(authActions.resetErrors());
         if (err.response.status === 500) setFailed(true);
         if (err.response.status === 400) {
           err.response.data.errors.map((item) => {
@@ -66,7 +66,7 @@ const Register = () => {
         />
       )}
       <div className="h-screen flex items-center justify-center">
-        <div className="shadow-md pt-12 px-12 w-full md:w-1/2 lg:w-1/3">
+        <div className="shadow-md pt-6 px-12 w-full md:w-1/2 lg:w-1/3">
           <h1 className="font-bold text-center uppercase">
             Register an Account
           </h1>
@@ -76,7 +76,7 @@ const Register = () => {
             />
           )}
           <form action="" className="my-3">
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 placeholder={"Firstname"}
                 icon={<FaUser />}
@@ -87,7 +87,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 placeholder={"Middlename"}
                 icon={<FaUser />}
@@ -97,7 +97,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 placeholder={"Lastname"}
                 icon={<FaUser />}
@@ -108,7 +108,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 placeholder={"Address"}
                 icon={<FaAddressBook />}
@@ -119,7 +119,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 placeholder={"Email"}
                 icon={<FaEnvelope />}
@@ -130,7 +130,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-2">
               <TextBox
                 type={"password"}
                 placeholder={"Password"}

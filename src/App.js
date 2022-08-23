@@ -18,25 +18,27 @@ export const useAuth = () => {
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <div className="container mx-auto overflow-hidden">
-          <Routes>
-            <Route path="/" element={<Index />}></Route>
-            <Route element={<PrivateRoutes />}>
-              <Route index path="/dashboard" element={<Dashboard />} exact />
-              <Route path="/accounts" element={<Account />} />
-              <Route path="/policies" element={<Policy />} />
-            </Route>
+      <div className="flex flex-col h-screen justify-between">
+        <BrowserRouter>
+          <Header />
+          <div className="container mx-auto overflow-hidden">
+            <Routes>
+              <Route path="/" element={<Index />}></Route>
+              <Route element={<PrivateRoutes />}>
+                <Route index path="/dashboard" element={<Dashboard />} exact />
+                <Route path="/accounts" element={<Account />} />
+                <Route path="/policies" element={<Policy />} />
+              </Route>
 
-            <Route element={<PublicRoutes />}>
-              <Route index path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-            </Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
-      <Footer />
+              <Route element={<PublicRoutes />}>
+                <Route index path="/login" element={<Login />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+              </Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+        <Footer />
+      </div>
     </>
   );
 }
