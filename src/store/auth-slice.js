@@ -16,14 +16,6 @@ const authSlice = createSlice({
       email: "",
       password: "",
     },
-    errors: {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      address: "",
-      email: "",
-      password: "",
-    },
   },
   reducers: {
     setRegForm(state, action) {
@@ -40,19 +32,6 @@ const authSlice = createSlice({
     },
     resetRegForm(state, action) {
       state.registerForm = {
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        address: "",
-        email: "",
-        password: "",
-      };
-    },
-    setErrors(state, action) {
-      state.errors[action.payload.field] = action.payload.defaultMessage;
-    },
-    resetErrors(state) {
-      state.errors = {
         firstName: "",
         middleName: "",
         lastName: "",
