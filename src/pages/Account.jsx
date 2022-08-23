@@ -21,10 +21,12 @@ const Account = () => {
 
   const fetchAccounts = async () => {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/api/admin/users`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=10`
+      )
       .then((res) => {
         console.log(res.data);
-        dispatch(userActions.getAllUsers(res.data));
+        dispatch(userActions.getAllUsers(res.data.content));
       })
       .catch((err) => console.log(err));
   };

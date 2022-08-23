@@ -22,20 +22,14 @@ const Register = () => {
   const form = useSelector((state) => state.auth.registerForm);
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [errors, setErrors] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    address: "",
-    email: "",
-    password: "",
-  });
+  const errors = useSelector((state) => state.auth.errors);
 
   const register = async (e) => {
     e.preventDefault();
     await axios
       .post(`${process.env.REACT_APP_API_URL}/api/register`, form)
       .then((res) => {
+        dispatch(authActions.resetErrors())
         setSuccess(true);
         setFailed(false);
         setTimeout(() => {
@@ -45,17 +39,12 @@ const Register = () => {
         }, 2000);
       })
       .catch((err) => {
-        console.log(err.response.data.errors);
-        if (err.response.status === 500) {
-          setFailed(true);
-        }
+        dispatch(authActions.resetErrors())
+        if (err.response.status === 500) setFailed(true);
         if (err.response.status === 400) {
           err.response.data.errors.map((item) => {
             const { defaultMessage, field } = item;
-            setErrors((prevState) => ({
-              ...prevState,
-              [field]: defaultMessage,
-            }));
+            dispatch(authActions.setErrors({ field, defaultMessage }));
           });
         }
       });
