@@ -16,6 +16,9 @@ const userSlice = createSlice({
     getAllUsers(state, action) {
       state.allUsers = action.payload;
     },
+    resetAllUser(state) {
+      state.allUsers = []
+    }
   },
 });
 

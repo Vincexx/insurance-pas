@@ -4,8 +4,10 @@ import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import { fetchAllAccounts, userActions } from "../store/user-slice";
 import { useDispatch } from "react-redux/es/exports";
+import { useAuth } from "../App";
 
 const Account = () => {
+  const token = useAuth();
   const header = [
     "Account #",
     "Firstname",
@@ -20,6 +22,7 @@ const Account = () => {
   const users = useSelector((state) => state.user.allUsers);
 
   const fetchAccounts = async () => {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     await axios
       .get(
         `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=10`
@@ -61,44 +64,58 @@ const Account = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {users.map((item, index) => (
-                      <tr key={index}>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                          {item.accountNumber ? item.accountNumber : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                          {item.firstName ? item.firstName : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                          {item.middleName ? item.middleName : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                          {item.lastName ? item.lastName : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                          {item.email ? item.email : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                          {item.address ? item.address : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                          <a
-                            className="text-green-500 hover:text-green-700"
-                            href="#"
-                          >
-                            Edit
-                          </a>
-                        </td>
-                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                          <a
-                            className="text-red-500 hover:text-red-700"
-                            href="#"
-                          >
-                            Delete
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
+                    {users.length > 0 ? (
+                      <>
+                        {users.map((item, index) => (
+                          <tr key={index}>
+                            <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                              {item.accountNumber ? item.accountNumber : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                              {item.firstName ? item.firstName : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                              {item.middleName ? item.middleName : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                              {item.lastName ? item.lastName : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                              {item.email ? item.email : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                              {item.address ? item.address : "N/A"}
+                            </td>
+                            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                              <a
+                                className="text-green-500 hover:text-green-700"
+                                href="#"
+                              >
+                                Edit
+                              </a>
+                            </td>
+                            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                              <a
+                                className="text-red-500 hover:text-red-700"
+                                href="#"
+                              >
+                                Delete
+                              </a>
+                            </td>
+                          </tr>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        <tr>
+                          <td>
+                            <div className="text-center py-4">
+                              <p className="text-gray-500">No Accounts Found</p>
+                            </div>
+                          </td>
+                        </tr>
+                      </>
+                    )}
                   </tbody>
                 </table>
               </div>

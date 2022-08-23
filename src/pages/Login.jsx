@@ -20,7 +20,7 @@ const Login = () => {
     await axios
       .post(`${process.env.REACT_APP_API_URL}/api/login`, form)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         localStorage.setItem("token", res.data.token);
         setSuccess(true);
         setFailed(false);

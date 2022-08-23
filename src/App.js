@@ -12,7 +12,6 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
 import { RingLoader } from "react-spinners";
-import axios from "axios";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
@@ -20,8 +19,6 @@ export const useAuth = () => {
 };
 
 function App() {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${useAuth()}`;
-  console.log(useAuth());
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

@@ -6,9 +6,12 @@ import { useEffect } from "react";
 import { useAuth } from "../App";
 import ErrorMessage from "./ErrorMessage";
 import Modal from "./AlertModal";
+import { userActions } from "../store/user-slice";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const token = useAuth();
   useEffect(() => {}, [token]);
@@ -19,6 +22,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("token");
     setLoggedOut(true);
+    dispatch(userActions.resetAllUser());
     setTimeout(() => {
       setLoggedOut(false);
       navigate("/login");
@@ -28,9 +32,11 @@ const Header = () => {
   const publicRoutes = [{ name: "Dashboard", link: "/dashboard" }];
   const privateRoutes = [
     { name: "Login", link: "/login" },
-    { name: "Register",
-    
-     link: "/register" },
+    {
+      name: "Register",
+
+      link: "/register",
+    },
   ];
   const navs = !token ? privateRoutes : publicRoutes;
 
