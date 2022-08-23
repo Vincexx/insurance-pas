@@ -8,6 +8,7 @@ import Account from "./pages/Account";
 import Policy from "./pages/Policy";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PublicRoutes from "./utils/PublicRoutes";
+import Footer from "./components/Footer";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
@@ -35,6 +36,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <Footer />
     </>
   );
 }
