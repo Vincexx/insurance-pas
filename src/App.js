@@ -12,9 +12,11 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
 import { RingLoader } from "react-spinners";
+import axios from "axios";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   return token;
 };
 
