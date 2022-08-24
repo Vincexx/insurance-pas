@@ -4,7 +4,6 @@ import axios from "axios";
 import { useAuth } from "../App";
 
 const useFetch = (url) => {
-  const token = useAuth();
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
