@@ -4,7 +4,7 @@ const Index = () => {
   return (
     <div className="h-screen mt-28 md:mt-0 md:flex items-center justify-between">
       <div className="md:w-1/2">
-        <h1 className="font-extrabold text-6xl">
+        <h1 className="text-6xl">
           Welcome to Automobile Insurance Policy and Claims System
         </h1>
         <p className="text-left my-3 text-gray-600">

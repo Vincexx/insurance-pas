@@ -31,7 +31,6 @@ const Login = () => {
         }, 2000);
       })
       .catch((err) => {
-        console.log(err.response.data);
         setFailed(true);
       });
   };
