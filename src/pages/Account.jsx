@@ -1,11 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import Button from "../components/Button";
-import { userActions } from "../store/user-slice";
-import { useDispatch } from "react-redux/es/exports";
 import useFetch from "../hooks/useFetch";
-import { CircleLoader, DotLoader } from "react-spinners";
+import { DotLoader } from "react-spinners";
 
 const Account = () => {
   const header = [
@@ -32,7 +28,7 @@ const Account = () => {
         <div className="flex flex-col">
           <div className="overflow-x-auto">
             <div className="p-1.5 w-full inline-block align-middle">
-              <div className="overflow-hidden border rounded-lg">
+              <div className="overflow-hidden border rounded-lg ">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
@@ -48,6 +44,21 @@ const Account = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 relative">
+                    <tr>
+                      <td>
+                        <div
+                          className={`bg-gray-200 absolute w-full h-full flex justify-center items-center transition-all duration-1000 ${
+                            isPending ? "" : "opacity-0"
+                          }`}
+                        >
+                          <DotLoader
+                            color={"#000000"}
+                            loading={isPending}
+                            size={40}
+                          />
+                        </div>
+                      </td>
+                    </tr>
                     {data ? (
                       <>
                         {data.map((item, index) => (
@@ -102,13 +113,6 @@ const Account = () => {
                     )}
                   </tbody>
                 </table>
-                <div
-                  className={`bg-gray-200 absolute w-1/2 h-1/2 flex justify-center items-center transition-all duration-1000 ${
-                    isPending ? "" : "opacity-0"
-                  }`}
-                >
-                  <DotLoader color={"#000000"} loading={isPending} size={40} />
-                </div>
               </div>
             </div>
           </div>
