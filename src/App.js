@@ -16,7 +16,7 @@ import axios from "axios";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   return token;
 };
 
@@ -53,6 +53,7 @@ function App() {
               <Route element={<PublicRoutes />}>
                 <Route index path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
+                <Route index path="*" element={<Login />}></Route>
               </Route>
             </Routes>
           </div>

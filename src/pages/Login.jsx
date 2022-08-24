@@ -20,8 +20,10 @@ const Login = () => {
     await axios
       .post(`${process.env.REACT_APP_API_URL}/api/login`, form)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${res.data.token}`;
         setSuccess(true);
         setFailed(false);
         setTimeout(() => {
