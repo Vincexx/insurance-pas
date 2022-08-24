@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import { userActions } from "../store/user-slice";
 import { useDispatch } from "react-redux/es/exports";
 import useFetch from "../hooks/useFetch";
+import { CircleLoader, DotLoader } from "react-spinners";
 
 const Account = () => {
   const header = [
@@ -18,7 +19,7 @@ const Account = () => {
     "Delete",
   ];
   const { data, isPending, error } = useFetch(
-    `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=10`
+    `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=8`
   );
 
   return (
@@ -46,7 +47,7 @@ const Account = () => {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-gray-200 relative">
                     {data ? (
                       <>
                         {data.map((item, index) => (
@@ -101,6 +102,13 @@ const Account = () => {
                     )}
                   </tbody>
                 </table>
+                <div
+                  className={`bg-gray-200 absolute w-1/2 h-1/2 flex justify-center items-center transition-all duration-1000 ${
+                    isPending ? "" : "opacity-0"
+                  }`}
+                >
+                  <DotLoader color={"#000000"} loading={isPending} size={40} />
+                </div>
               </div>
             </div>
           </div>
