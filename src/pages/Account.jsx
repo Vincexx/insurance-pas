@@ -2,12 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
-import { fetchAllAccounts, userActions } from "../store/user-slice";
+import { userActions } from "../store/user-slice";
 import { useDispatch } from "react-redux/es/exports";
-import { useAuth } from "../App";
+import useFetch from "../hooks/useFetch";
 
 const Account = () => {
-  const token = useAuth();
   const header = [
     "Account #",
     "Firstname",
@@ -18,25 +17,9 @@ const Account = () => {
     "Edit",
     "Delete",
   ];
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.allUsers);
-
-  const fetchAccounts = async () => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    await axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=10`
-      )
-      .then((res) => {
-        console.log(res.data);
-        dispatch(userActions.getAllUsers(res.data.content));
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    fetchAccounts();
-  }, []);
+  const { data, isPending, error } = useFetch(
+    `${process.env.REACT_APP_API_URL}/api/admin/users?offSet=0&pageSize=10`
+  );
 
   return (
     <>
@@ -64,9 +47,9 @@ const Account = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {users.length > 0 ? (
+                    {data ? (
                       <>
-                        {users.map((item, index) => (
+                        {data.map((item, index) => (
                           <tr key={index}>
                             <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
                               {item.accountNumber ? item.accountNumber : "N/A"}

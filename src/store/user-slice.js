@@ -1,13 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-export const fetchAllAccounts = createAsyncThunk("users/get", async () => {
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/api/admin/users`
-  );
-  const json = await response.json();
-  console.log(json.results);
-  return json.results;
-});
+import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
@@ -17,8 +8,8 @@ const userSlice = createSlice({
       state.allUsers = action.payload;
     },
     resetAllUser(state) {
-      state.allUsers = []
-    }
+      state.allUsers = [];
+    },
   },
 });
 
