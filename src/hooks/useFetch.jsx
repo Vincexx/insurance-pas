@@ -10,7 +10,6 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios
       .get(url)
       .then((res) => {
