@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../App";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
