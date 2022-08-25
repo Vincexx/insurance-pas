@@ -4,10 +4,10 @@ import { FaMagnet, FaWindowClose, FaHamburger, FaCheck } from "react-icons/fa";
 import Button from "./Button";
 import { useEffect } from "react";
 import { useAuth } from "../App";
-import ErrorMessage from "./ErrorMessage";
 import Modal from "./AlertModal";
 import { userActions } from "../store/user-slice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,14 +19,19 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [loggedOut, setLoggedOut] = useState(false);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setLoggedOut(true);
-    dispatch(userActions.resetAllUser());
-    setTimeout(() => {
-      setLoggedOut(false);
-      navigate("/login");
-    }, 2000);
+  const logout = async () => {
+    await axios
+      .post(`${process.env.REACT_APP_API_URL}/api/logout`)
+      .then((res) => {
+        localStorage.removeItem("token");
+        setLoggedOut(true);
+        dispatch(userActions.resetAllUser());
+        setTimeout(() => {
+          setLoggedOut(false);
+          navigate("/login");
+        }, 2000);
+      })
+      .catch((err) => console.log(err));
   };
 
   const publicRoutes = [{ name: "Dashboard", link: "/dashboard" }];
