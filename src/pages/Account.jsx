@@ -21,9 +21,8 @@ const Account = () => {
   return (
     <>
       <div className="md:w-4/5 md:mt-24 md:pr-10 md:pl-5">
-        <div className="flex justify-between">
+        <div className="ml-2">
           <h1 className="font-bold text-xl mb-3">Manage Accounts</h1>
-          <Button btnName={"Add Account"} />
         </div>
         <div className="flex flex-col">
           <div className="overflow-x-auto">
@@ -81,15 +80,15 @@ const Account = () => {
                             <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                               {item.address ? item.address : "N/A"}
                             </td>
-                            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
                               <a
-                                className="text-green-500 hover:text-green-700"
+                                className="text-green-500 hover:text-green-700 "
                                 href="#"
                               >
                                 Edit
                               </a>
                             </td>
-                            <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
                               <a
                                 className="text-red-500 hover:text-red-700"
                                 href="#"
