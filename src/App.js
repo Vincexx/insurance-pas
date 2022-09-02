@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Login from "./pages/Login";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
@@ -12,7 +12,6 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
 import { RingLoader } from "react-spinners";
-import axios from "axios";
 
 export const useAuth = () => {
   const token = localStorage.getItem("token");
