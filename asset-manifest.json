@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/insurance-pas/static/css/main.fd4f6d54.css",
-    "main.js": "/insurance-pas/static/js/main.8d2b0828.js",
+    "main.js": "/insurance-pas/static/js/main.9d489579.js",
     "static/js/787.f6fbed16.chunk.js": "/insurance-pas/static/js/787.f6fbed16.chunk.js",
     "static/media/gravitas.svg": "/insurance-pas/static/media/gravitas.3f8e37147bba87c1e2e60b6e441750ea.svg",
     "index.html": "/insurance-pas/index.html",
     "main.fd4f6d54.css.map": "/insurance-pas/static/css/main.fd4f6d54.css.map",
-    "main.8d2b0828.js.map": "/insurance-pas/static/js/main.8d2b0828.js.map",
+    "main.9d489579.js.map": "/insurance-pas/static/js/main.9d489579.js.map",
     "787.f6fbed16.chunk.js.map": "/insurance-pas/static/js/787.f6fbed16.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fd4f6d54.css",
-    "static/js/main.8d2b0828.js"
+    "static/js/main.9d489579.js"
   ]
 }
